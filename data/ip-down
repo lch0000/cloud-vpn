@@ -7499,3 +7499,4 @@ route del -net 103.68.64.0 netmask 255.255.252.0
 route del -net 103.68.88.0 netmask 255.255.252.0
 route del -net 103.68.100.0 netmask 255.255.252.0
 route del -net 103.68.128.0 netmask 255.255.252.0
+ip route add default via $OLDGW

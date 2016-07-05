@@ -7498,3 +7498,4 @@ route add -net 103.68.64.0 netmask 255.255.252.0 gw $OLDGW
 route add -net 103.68.88.0 netmask 255.255.252.0 gw $OLDGW
 route add -net 103.68.100.0 netmask 255.255.252.0 gw $OLDGW
 route add -net 103.68.128.0 netmask 255.255.252.0 gw $OLDGW
+ip route replace default dev ppp0
