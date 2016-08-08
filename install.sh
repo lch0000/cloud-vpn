@@ -43,6 +43,17 @@ function ubuntu_install() {
   chmod +x /etc/ppp/ip-down.d/ip-down
 }
 
+function centos_install() {
+  cp $SCRIPTDIR/data/ip-pre-up /etc/ppp/ip-pre-up
+  chmod +x /etc/ppp/ip-pre-up
+
+  cp $SCRIPTDIR/data/ip-up /etc/ppp/ip-up
+  chmod +x /etc/ppp/ip-up
+
+  cp $SCRIPTDIR/data/ip-down /etc/ppp/ip-down
+  chmod +x /etc/ppp/ip-down
+}
+
 welcome
 
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -59,6 +70,9 @@ if [[ "$SYSTEM" =~ "fedora" ]]; then
   success_message
 elif [[ "$SYSTEM" =~ "ubuntu" ]]; then
   ubuntu_install
+  success_message
+elif [[ "$SYSTEM" =~ "centos" ]]; then
+  centos_install
   success_message
 else
   failed_message
