@@ -17,6 +17,7 @@ link_start_time = 0
 link_vpn = 'jp1' # 初始设定一个不常用的vpn作为备选
 username = '******' # vpn用户名
 password = '******' # vpn密码
+oldgw = getoutput('cat /tmp/vpn_oldgw')
 
 def linkstatus():
     '''检测本机当前是否存在ppp0的网卡'''
@@ -40,6 +41,7 @@ def connect_vpn(vpns):
             continue
         print '尝试连接到%s 时间%s' % (vpntag, time.ctime())
         getoutput('killall pppd')
+        getoutput('ip route add default via %s' %oldgw) # 恢复默认网关
         result = getoutput('pptpsetup --create vpn --server p1.%s.faxgood.com --username %s --password %s --encrypt --start' %(vpntag, username, password)) # 需要跟据vpn提供商的服务器修改'p1.%s.faxgood.com'部分
         if 'local' in result and 'remote' in result:
             link_start_time = int(time.time())
